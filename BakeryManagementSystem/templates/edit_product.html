@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🧁 Bakery Management System</h1>
+    <p>Edit Product</p>
+</div>
+
+<div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/customers">Customers</a>
+    <a href="/employees">Employees</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/suppliers">Suppliers</a>
+    <a href="/ingredients">Ingredients</a>
+    <a href="/orders">Orders</a>
+    <a href="/payments">Payments</a>
+</div>
+
+<div class="container">
+
+<div class="form-box">
+
+<h2>Edit Product</h2>
+
+<form method="POST"
+      action="/update_product/{{ product.product_id }}">
+
+<label>Product Name</label>
+
+<input type="text"
+       name="product_name"
+       value="{{ product.product_name }}"
+       required>
+
+<label>Category</label>
+
+<select name="category_id" required>
+
+{% for category in categories %}
+
+<option value="{{ category.category_id }}"
+    {% if category.category_id == product.category_id %}
+        selected
+    {% endif %}>
+    {{ category.category_name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Price</label>
+
+<input type="number"
+       name="price"
+       step="0.01"
+       value="{{ product.price }}"
+       required>
+
+<label>Stock Quantity</label>
+
+<input type="number"
+       name="stock_quantity"
+       value="{{ product.stock_quantity }}"
+       required>
+
+<button type="submit">
+Update Product
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

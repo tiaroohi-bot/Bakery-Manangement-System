@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🧁 Bakery Management System</h1>
+    <p>Order Management</p>
+</div>
+
+<div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/customers">Customers</a>
+    <a href="/employees">Employees</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/suppliers">Suppliers</a>
+    <a href="/ingredients">Ingredients</a>
+    <a href="/orders">Orders</a>
+    <a href="/payments">Payments</a>
+</div>
+
+<div class="container">
+
+<h2>Orders</h2>
+
+<div class="form-box">
+
+<h3>Create Order</h3>
+
+<form method="POST" action="/add_order">
+
+<label>Customer</label>
+
+<select name="customer_id" required>
+
+<option value="">Select Customer</option>
+
+{% for customer in customers %}
+
+<option value="{{ customer.customer_id }}">
+    {{ customer.name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Product</label>
+
+<select name="product_id" required>
+
+<option value="">Select Product</option>
+
+{% for product in products %}
+
+<option value="{{ product.product_id }}">
+    {{ product.product_name }} - ₹{{ product.price }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Quantity</label>
+
+<input type="number"
+       name="quantity"
+       min="1"
+       value="1"
+       required>
+
+<button type="submit">
+Create Order
+</button>
+
+</form>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+<th>Order ID</th>
+<th>Customer</th>
+<th>Date</th>
+<th>Total</th>
+<th>Status</th>
+<th>Update</th>
+</tr>
+
+{% for order in orders %}
+
+<tr>
+
+<td>{{ order.order_id }}</td>
+
+<td>{{ order.customer_name }}</td>
+
+<td>{{ order.order_date }}</td>
+
+<td>₹{{ order.total_amount }}</td>
+
+<td>{{ order.order_status }}</td>
+
+<td>
+
+<form method="POST"
+      action="/update_order_status/{{ order.order_id }}">
+
+<select class="small-select"
+        name="order_status">
+
+<option value="Pending"
+{% if order.order_status == 'Pending' %}
+selected
+{% endif %}>
+Pending
+</option>
+
+<option value="Confirmed"
+{% if order.order_status == 'Confirmed' %}
+selected
+{% endif %}>
+Confirmed
+</option>
+
+<option value="Completed"
+{% if order.order_status == 'Completed' %}
+selected
+{% endif %}>
+Completed
+</option>
+
+<option value="Cancelled"
+{% if order.order_status == 'Cancelled' %}
+selected
+{% endif %}>
+Cancelled
+</option>
+
+</select>
+
+<button type="submit">
+Update
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

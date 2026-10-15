@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🧁 Bakery Management System</h1>
+    <p>Payment Management</p>
+</div>
+
+<div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/customers">Customers</a>
+    <a href="/employees">Employees</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/suppliers">Suppliers</a>
+    <a href="/ingredients">Ingredients</a>
+    <a href="/orders">Orders</a>
+    <a href="/payments">Payments</a>
+</div>
+
+<div class="container">
+
+<h2>Payments</h2>
+
+<div class="form-box">
+
+<h3>Add Payment</h3>
+
+<form method="POST" action="/add_payment">
+
+<label>Order</label>
+
+<select name="order_id" required>
+
+<option value="">Select Order</option>
+
+{% for order in orders %}
+
+<option value="{{ order.order_id }}">
+    Order #{{ order.order_id }}
+    - {{ order.customer_name }}
+    - ₹{{ order.total_amount }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Payment Method</label>
+
+<select name="payment_method" required>
+
+<option value="">Select Method</option>
+<option value="Cash">Cash</option>
+<option value="Card">Card</option>
+<option value="UPI">UPI</option>
+<option value="Online">Online</option>
+
+</select>
+
+<label>Payment Status</label>
+
+<select name="payment_status">
+
+<option value="Pending">Pending</option>
+<option value="Paid">Paid</option>
+<option value="Failed">Failed</option>
+
+</select>
+
+<label>Amount</label>
+
+<input type="number"
+       name="amount"
+       step="0.01"
+       min="0"
+       required>
+
+<button type="submit">
+Add Payment
+</button>
+
+</form>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+<th>Payment ID</th>
+<th>Order ID</th>
+<th>Customer</th>
+<th>Date</th>
+<th>Method</th>
+<th>Status</th>
+<th>Amount</th>
+</tr>
+
+{% for payment in payments %}
+
+<tr>
+
+<td>{{ payment.payment_id }}</td>
+<td>{{ payment.order_id }}</td>
+<td>{{ payment.customer_name }}</td>
+<td>{{ payment.payment_date }}</td>
+<td>{{ payment.payment_method }}</td>
+<td>{{ payment.payment_status }}</td>
+<td>₹{{ payment.amount }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

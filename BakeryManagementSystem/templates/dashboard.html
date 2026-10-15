@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Bakery Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<div class="header">
+
+    <h2>
+        🧁 Bakery Management System
+    </h2>
+
+    <p>
+        Bakery Operations & Management
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+<div class="navbar">
+
+    <a href="/">
+        Dashboard
+    </a>
+
+    <a href="/customers">
+        Customers
+    </a>
+
+    <a href="/categories">
+        Categories
+    </a>
+
+    <a href="/products">
+        Products
+    </a>
+
+    <a href="/employees">
+        Employees
+    </a>
+
+    <a href="/suppliers">
+        Suppliers
+    </a>
+
+    <a href="/ingredients">
+        Ingredients
+    </a>
+
+    <a href="/orders">
+        Orders
+    </a>
+
+    <a href="/payments">
+        Payments
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<div class="container">
+
+
+    <!-- =================================================
+         BIG BAKERY IMAGE
+         ================================================= -->
+
+    <div class="visual-hero">
+
+        <div class="visual-hero-content">
+
+            <div class="visual-hero-small">
+                Welcome to the bakery
+            </div>
+
+            <h1>
+                Freshly baked.
+                Carefully managed.
+            </h1>
+
+            <p>
+                Keep your bakery running smoothly —
+                from customers and products to orders,
+                ingredients and payments.
+            </p>
+
+        </div>
+
+
+        <!-- HUMAN TOUCH NOTE -->
+
+        <div class="bakery-note">
+
+            <div class="bakery-note-title">
+                From our kitchen
+            </div>
+
+            <p>
+                Good baking starts with good ingredients,
+                a little patience and a lot of care.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         WELCOME STRIP
+         ================================================= -->
+
+    <div class="intro-strip">
+
+        <div class="intro-left">
+
+            <div class="intro-icon">
+                🥐
+            </div>
+
+            <div>
+
+                <strong>
+                    Everything in one place
+                </strong>
+
+                <span>
+                    Your bakery's everyday operations at a glance.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="intro-right">
+            Made with care • Baked with love
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         STATISTICS
+         ================================================= -->
+
+    <div class="cards">
+
+
+        <!-- CUSTOMERS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                👥
+            </div>
+
+            <p>
+                Total Customers
+            </p>
+
+            <h1>
+                {{ total_customers }}
+            </h1>
+
+            <a href="/customers">
+                Manage Customers →
+            </a>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🧁
+            </div>
+
+            <p>
+                Total Products
+            </p>
+
+            <h1>
+                {{ total_products }}
+            </h1>
+
+            <a href="/products">
+                Manage Products →
+            </a>
+
+        </div>
+
+
+        <!-- ORDERS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🛍️
+            </div>
+
+            <p>
+                Total Orders
+            </p>
+
+            <h1>
+                {{ total_orders }}
+            </h1>
+
+            <a href="/orders">
+                View Orders →
+            </a>
+
+        </div>
+
+
+        <!-- SUPPLIERS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🚚
+            </div>
+
+            <p>
+                Total Suppliers
+            </p>
+
+            <h1>
+                {{ total_suppliers }}
+            </h1>
+
+            <a href="/suppliers">
+                View Suppliers →
+            </a>
+
+        </div>
+
+
+        <!-- INGREDIENTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🌾
+            </div>
+
+            <p>
+                Total Ingredients
+            </p>
+
+            <h1>
+                {{ total_ingredients }}
+            </h1>
+
+            <a href="/ingredients">
+                Manage Ingredients →
+            </a>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⏳
+            </div>
+
+            <p>
+                Pending Orders
+            </p>
+
+            <h1>
+                {{ pending_orders }}
+            </h1>
+
+            <a href="/orders">
+                Check Orders →
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         BAKERY PHOTO SECTION
+         ================================================= -->
+
+    <div class="photo-section">
+
+
+        <div class="photo-section-heading">
+
+            <h2>
+                A little taste of the bakery
+            </h2>
+
+            <p>
+                The people, products and atmosphere behind every order.
+            </p>
+
+        </div>
+
+
+        <div class="photo-grid">
+
+
+            <!-- LARGE IMAGE -->
+
+            <div class="photo-card large">
+
+                <img
+                    src="https://images.pexels.com/photos/29380155/pexels-photo-29380155.jpeg?cs=srgb&dl=pexels-valeriya-29380155.jpg&fm=jpg"
+                    alt="Freshly baked breads displayed in a bakery">
+
+                <div class="photo-overlay">
+
+                    <span>
+                        Fresh every day
+                    </span>
+
+                    <h3>
+                        Straight from the oven
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMAGE 2 -->
+
+            <div class="photo-card">
+
+                <img
+                    src="https://images.pexels.com/photos/29587265/pexels-photo-29587265.jpeg?cs=srgb&dl=pexels-rao-qingwei-400570939-29587265.jpg&fm=jpg"
+                    alt="Warm bakery counter">
+
+                <div class="photo-overlay">
+
+                    <span>
+                        Our counter
+                    </span>
+
+                    <h3>
+                        Where orders come together
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMAGE 3 -->
+
+            <div class="photo-card">
+
+                <img
+                    src="https://images.pexels.com/photos/38825117/pexels-photo-38825117.jpeg?cs=srgb&dl=pexels-anniehatuanh-38825117.jpg&fm=jpg"
+                    alt="Cozy bakery interior">
+
+                <div class="photo-overlay">
+
+                    <span>
+                        Bakery moments
+                    </span>
+
+                    <h3>
+                        Warm, simple & welcoming
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GRAPHS
+         ================================================= -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- OVERVIEW -->
+
+        <div class="chart-box">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h3>
+                        Bakery Overview
+                    </h3>
+
+                    <p>
+                        Current records in your system
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="bar-chart">
+
+
+                <!-- CUSTOMERS -->
+
+                <div class="bar-row">
+
+                    <span class="bar-label">
+                        Customers
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill"
+                            style="width:
+                            {% if total_customers > 0 %}
+                                {{ [total_customers * 10, 100] | min }}%
+                            {% else %}
+                                3%
+                            {% endif %};">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-number">
+                        {{ total_customers }}
+                    </span>
+
+                </div>
+
+
+                <!-- PRODUCTS -->
+
+                <div class="bar-row">
+
+                    <span class="bar-label">
+                        Products
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill"
+                            style="width:
+                            {% if total_products > 0 %}
+                                {{ [total_products * 10, 100] | min }}%
+                            {% else %}
+                                3%
+                            {% endif %};">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-number">
+                        {{ total_products }}
+                    </span>
+
+                </div>
+
+
+                <!-- ORDERS -->
+
+                <div class="bar-row">
+
+                    <span class="bar-label">
+                        Orders
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill"
+                            style="width:
+                            {% if total_orders > 0 %}
+                                {{ [total_orders * 10, 100] | min }}%
+                            {% else %}
+                                3%
+                            {% endif %};">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-number">
+                        {{ total_orders }}
+                    </span>
+
+                </div>
+
+
+                <!-- SUPPLIERS -->
+
+                <div class="bar-row">
+
+                    <span class="bar-label">
+                        Suppliers
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill"
+                            style="width:
+                            {% if total_suppliers > 0 %}
+                                {{ [total_suppliers * 10, 100] | min }}%
+                            {% else %}
+                                3%
+                            {% endif %};">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-number">
+                        {{ total_suppliers }}
+                    </span>
+
+                </div>
+
+
+                <!-- INGREDIENTS -->
+
+                <div class="bar-row">
+
+                    <span class="bar-label">
+                        Ingredients
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill"
+                            style="width:
+                            {% if total_ingredients > 0 %}
+                                {{ [total_ingredients * 10, 100] | min }}%
+                            {% else %}
+                                3%
+                            {% endif %};">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-number">
+                        {{ total_ingredients }}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ORDER STATUS -->
+
+        <div class="chart-box">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h3>
+                        Order Status
+                    </h3>
+
+                    <p>
+                        Current order activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-chart">
+
+
+                <div class="donut">
+
+                    <div class="donut-center">
+
+                        <strong>
+                            {{ total_orders }}
+                        </strong>
+
+                        <span>
+                            ORDERS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-legend">
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot pending">
+                        </span>
+
+                        <span>
+                            Pending:
+                            {{ pending_orders }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot other">
+                        </span>
+
+                        <span>
+                            Other:
+                            {{ total_orders - pending_orders }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         QUICK ACTIONS
+         ================================================= -->
+
+    <h2 class="section-title">
+        Quick Actions
+    </h2>
+
+    <p class="section-subtitle">
+        Everything you need for the day's bakery operations.
+    </p>
+
+
+    <div class="quick-actions">
+
+
+        <a
+            href="/customers"
+            class="quick-action">
+
+            <div class="quick-action-icon">
+                👤
+            </div>
+
+            <div class="quick-action-text">
+
+                <strong>
+                    Customers
+                </strong>
+
+                <span>
+                    Manage customer records
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="/products"
+            class="quick-action">
+
+            <div class="quick-action-icon">
+                🍰
+            </div>
+
+            <div class="quick-action-text">
+
+                <strong>
+                    Products
+                </strong>
+
+                <span>
+                    Manage bakery products
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="/orders"
+            class="quick-action">
+
+            <div class="quick-action-icon">
+                🛒
+            </div>
+
+            <div class="quick-action-text">
+
+                <strong>
+                    Orders
+                </strong>
+
+                <span>
+                    Create and manage orders
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="/payments"
+            class="quick-action">
+
+            <div class="quick-action-icon">
+                💳
+            </div>
+
+            <div class="quick-action-text">
+
+                <strong>
+                    Payments
+                </strong>
+
+                <span>
+                    Manage payment records
+                </span>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<div class="footer">
+
+    🥖 Bakery Management System
+
+    &nbsp; • &nbsp;
+
+    Fresh ideas. Better baking.
+
+</div>
+
+
+</body>
+
+</html>

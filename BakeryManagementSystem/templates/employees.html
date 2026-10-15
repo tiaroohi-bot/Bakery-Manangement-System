@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🧁 Bakery Management System</h1>
+    <p>Employee Management</p>
+</div>
+
+<div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/customers">Customers</a>
+    <a href="/employees">Employees</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/suppliers">Suppliers</a>
+    <a href="/ingredients">Ingredients</a>
+    <a href="/orders">Orders</a>
+    <a href="/payments">Payments</a>
+</div>
+
+<div class="container">
+
+<h2>Employees</h2>
+
+<div class="form-box">
+
+<form method="POST" action="/add_employee">
+
+<label>Employee Name</label>
+<input type="text" name="employee_name" required>
+
+<label>Phone</label>
+<input type="text" name="phone">
+
+<label>Role</label>
+<input type="text" name="role">
+
+<label>Salary</label>
+<input type="number" name="salary" step="0.01">
+
+<label>Hire Date</label>
+<input type="date" name="hire_date">
+
+<button type="submit">Add Employee</button>
+
+</form>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Role</th>
+<th>Salary</th>
+<th>Hire Date</th>
+<th>Action</th>
+</tr>
+
+{% for employee in employees %}
+
+<tr>
+
+<td>{{ employee.employee_id }}</td>
+<td>{{ employee.employee_name }}</td>
+<td>{{ employee.phone }}</td>
+<td>{{ employee.role }}</td>
+<td>₹{{ employee.salary }}</td>
+<td>{{ employee.hire_date }}</td>
+
+<td>
+
+<form method="POST"
+      action="/delete_employee/{{ employee.employee_id }}">
+
+<button class="delete-btn">
+Delete
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

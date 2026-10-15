@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🧁 Bakery Management System</h1>
+    <p>Category Management</p>
+</div>
+
+<div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/customers">Customers</a>
+    <a href="/employees">Employees</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/suppliers">Suppliers</a>
+    <a href="/ingredients">Ingredients</a>
+    <a href="/orders">Orders</a>
+    <a href="/payments">Payments</a>
+</div>
+
+<div class="container">
+
+<h2>Categories</h2>
+
+<div class="form-box">
+
+<form method="POST" action="/add_category">
+
+<label>Category Name</label>
+
+<input type="text"
+       name="category_name"
+       required>
+
+<button type="submit">Add Category</button>
+
+</form>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Category</th>
+<th>Action</th>
+</tr>
+
+{% for category in categories %}
+
+<tr>
+
+<td>{{ category.category_id }}</td>
+
+<td>{{ category.category_name }}</td>
+
+<td>
+
+<form method="POST"
+      action="/delete_category/{{ category.category_id }}">
+
+<button class="delete-btn"
+        type="submit">
+Delete
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>
